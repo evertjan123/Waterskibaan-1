@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Kabel.cs" />
     <Compile Include="Lijn.cs" />
     <Compile Include="Skies.cs" />
     <Compile Include="Sporter.cs" />
