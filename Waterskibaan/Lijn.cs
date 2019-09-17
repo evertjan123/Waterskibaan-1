@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    interface IMoves
+    class Lijn
     {
-        int Move();
+        public int PositieOpDeKabel { get; set; }
     }
 }
