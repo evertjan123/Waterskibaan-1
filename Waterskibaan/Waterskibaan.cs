@@ -25,6 +25,11 @@ namespace Waterskibaan
         }
         public void SporterStart(Sporter sp)
         {
+            if (sp.Skies == null || sp.Zwemvest == null)
+            {
+                throw new Exception();
+            }
+
             Random rdn = new Random();
             Kabel.NeemLijnInGebruik(LijnenVoorraad.VerwijderEersteLijn());
             sp.AantalRondenNogTeGaan = rdn.Next(1, 3);
