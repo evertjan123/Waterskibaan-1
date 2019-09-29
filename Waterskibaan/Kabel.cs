@@ -16,7 +16,7 @@ namespace Waterskibaan
         }
         public void NeemLijnInGebruik(Lijn lijn)
         {
-            if (IsStartPositieLeeg())
+            if (IsStartPositieLeeg() && lijn != null)
             {
                 _lijnen.AddFirst(lijn);
             }
