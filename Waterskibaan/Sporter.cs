@@ -7,22 +7,24 @@ using System.Windows.Media;
 
 namespace Waterskibaan
 {
-    class Sporter : IMoves
+    class Sporter
     {
         public int AantalRondenNogTeGaan { get; set; } = 1;
+        public int BehaaldePunten { get; set; }
         public Zwemvest Zwemvest { get; set; }
         public Skies Skies { get; set; }
         public Color KledingKleur { get; set; }
-        public List<IMoves> Moves { get; set; }
+        public List<IMove> Moves { get; set; }
 
-        public Sporter(List<IMoves> moves)
+        public Sporter(List<IMove> moves)
         {
+            BehaaldePunten = 0;
+            Moves = moves;
 
-        }
-
-        public int Move()
-        {
-            throw new NotImplementedException();
+            foreach (var move in Moves)
+            {
+                BehaaldePunten += move.Move();
+            }
         }
     }
 }

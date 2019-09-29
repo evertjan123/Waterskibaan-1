@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Waterskibaan
+namespace Waterskibaan.Moves
 {
-    interface IMoves
+    class Trick : IMove
     {
-        int Move();
+        public int Move()
+        {
+            return 5;
+        }
     }
 }
