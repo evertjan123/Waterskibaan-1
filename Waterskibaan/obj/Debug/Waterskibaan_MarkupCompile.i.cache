@@ -1,7 +1,7 @@
 ﻿Waterskibaan
 
 
-winexe
+exe
 C#
 .cs
 C:\Users\Casper\Documents\GitHub\Waterskibaan\Waterskibaan\obj\Debug\
@@ -16,5 +16,5 @@ C:\Users\Casper\Documents\GitHub\Waterskibaan\Waterskibaan\App.xaml
 13-1505183044
 MainWindow.xaml;
 
-False
+True
 

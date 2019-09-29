@@ -22,6 +22,7 @@ namespace Waterskibaan
     {
         public MainWindow()
         {
+
             InitializeComponent();
         }
     }

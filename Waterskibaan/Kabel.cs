@@ -8,11 +8,11 @@ namespace Waterskibaan
 {
     class Kabel
     {
-        private LinkedList<Lijn> _lijnen;
+        private LinkedList<Lijn> _lijnen = new LinkedList<Lijn>();
 
         public bool IsStartPositieLeeg()
         {
-            return _lijnen.First == null;
+            return _lijnen == null || _lijnen.Count == 0 || _lijnen.First.Value.PositieOpDeKabel != 0;
         }
         public void NeemLijnInGebruik(Lijn lijn)
         {
@@ -23,32 +23,44 @@ namespace Waterskibaan
         }
         public void VerschuifLijnen()
         {
+            if (_lijnen != null)
+            {
+                for (LinkedListNode<Lijn> current = _lijnen.First; current != null; current = current.Next)
+                {
+                    current.Value.PositieOpDeKabel++;
+                }
+            }
             
         }
         public Lijn VerwijderLijnVanKabel()
         {
-            Lijn l = _lijnen.ElementAt<Lijn>(9);
+            Lijn r = null;
 
-            if (l != null)
+            if (_lijnen != null && _lijnen.Count != 0 && _lijnen.Last.Value.PositieOpDeKabel == 9)
             {
-                _lijnen.Remove(l);
+                r = _lijnen.Last.Value;
+                _lijnen.RemoveLast();
             }
-            
-            return l;
+
+            return r;
         }
         public override string ToString()
         {
-            List<int> integers = new List<int>();
-            foreach (var item in _lijnen)
+            if (_lijnen != null && _lijnen.Count > 0)
             {
-                if (item != null)
-                {
-                    integers.Add(item.PositieOpDeKabel);
-                }
-            }
+                List<int> integers = new List<int>();
 
-            // return integers.Join<int>("|");
-            return base.ToString();
+                for (LinkedListNode<Lijn> current = _lijnen.First; current != null; current = current.Next)
+                {
+                    integers.Add(current.Value.PositieOpDeKabel);
+                }
+
+                return String.Join("|", integers.ToArray());
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }
