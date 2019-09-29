@@ -61,8 +61,14 @@
     <Compile Include="Kabel.cs" />
     <Compile Include="Lijn.cs" />
     <Compile Include="LijnenVoorraad.cs" />
+    <Compile Include="MoveCollection.cs" />
+    <Compile Include="Moves\Slalom.cs" />
+    <Compile Include="Moves\Trick.cs" />
+    <Compile Include="Moves\Turn.cs" />
+    <Compile Include="Moves\Jump.cs" />
     <Compile Include="Skies.cs" />
     <Compile Include="Sporter.cs" />
+    <Compile Include="Waterskibaan.cs" />
     <Compile Include="Zwemvest.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -72,7 +78,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IMoves.cs" />
+    <Compile Include="IMove.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

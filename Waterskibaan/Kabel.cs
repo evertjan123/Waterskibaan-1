@@ -36,7 +36,7 @@ namespace Waterskibaan
         {
             Lijn r = null;
 
-            if (_lijnen != null && _lijnen.Count != 0 && _lijnen.Last.Value.PositieOpDeKabel == 9)
+            if (_lijnen != null && _lijnen.Count != 0 && _lijnen.Last.Value.PositieOpDeKabel == 9 && (_lijnen.Last.Value.Sporter == null || _lijnen.Last.Value.Sporter.AantalRondenNogTeGaan == 1))
             {
                 r = _lijnen.Last.Value;
                 _lijnen.RemoveLast();
