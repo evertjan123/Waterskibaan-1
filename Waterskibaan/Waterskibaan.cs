@@ -41,5 +41,17 @@ namespace Waterskibaan
 
             sp.KledingKleur = c;
         }
+        public void Start()
+        {
+            throw new NotImplementedException();
+        }
+        public void Stop()
+        {
+            throw new NotImplementedException();
+        }
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }
