@@ -6,23 +6,9 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class InstructieGroep : IWachtrij
+    class InstructieGroep : Wachtrij
     {
-        public const int MAX_LENGTE_RIJ = 5;
+        public override int MAX_LENGTE_RIJ { get { return 5; } }
 
-        public List<Sporter> GetAlleSporters()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SporterNeemPlaatsInRij(Sporter sporter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Sporter> SportersVerlatenRij(int aantal)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
