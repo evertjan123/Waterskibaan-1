@@ -22,10 +22,6 @@ namespace Waterskibaan
     {
         public MainWindow()
         {
-            Console.WriteLine(-1 / 10);
-            Console.WriteLine(0 / 10);
-            Console.WriteLine(9 / 10);
-            Console.WriteLine(10 / 10);
             InitializeComponent();
         }
     }
