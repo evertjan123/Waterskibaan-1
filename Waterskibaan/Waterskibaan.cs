@@ -9,22 +9,34 @@ namespace Waterskibaan
 {
     class Waterskibaan
     {
-        private LijnenVoorraad _lijnenVoorraad;
-        private Kabel _kabel;
+        private static Random _random = new Random();
+        public LijnenVoorraad LijnenVoorraad { get; }
+        public Kabel Kabel { get; }
         public Waterskibaan()
         {
-            _lijnenVoorraad = new LijnenVoorraad();
-            _kabel = new Kabel();
+            LijnenVoorraad = new LijnenVoorraad();
+            Kabel = new Kabel();
 
             for (int i = 0; i < 15; i++)
             {
-                _lijnenVoorraad?.LijnToevoegenAanRij(new Lijn());
+                LijnenVoorraad?.LijnToevoegenAanRij(new Lijn());
             }
         }
         public void VerplaatsKabel()
         {
-            _kabel.VerschuifLijnen();
-            _lijnenVoorraad.LijnToevoegenAanRij(_kabel.VerwijderLijnVanKabel());
+            for (LinkedListNode<Lijn> current = Kabel.Lijnen?.First; current != null; current = current.Next)
+            {
+                if (current.Value.Sporter.Moves.Count > 0 && _random.Next(0, 4) == 0)
+                {
+                    current.Value.Sporter.HuidigeMove = current.Value.Sporter.Moves[_random.Next(0, current.Value.Sporter.Moves.Count)];
+                }
+                else
+                {
+                    current.Value.Sporter.HuidigeMove = null;
+                }
+            }
+            Kabel.VerschuifLijnen();
+            LijnenVoorraad.LijnToevoegenAanRij(Kabel.VerwijderLijnVanKabel());
         }
         public void SporterStart(Sporter sp)
         {
@@ -33,15 +45,16 @@ namespace Waterskibaan
                 throw new Exception();
             }
 
-            Random rdn = new Random();
-            _kabel.NeemLijnInGebruik(_lijnenVoorraad.VerwijderEersteLijn());
-            sp.AantalRondenNogTeGaan = rdn.Next(1, 3);
+            Lijn lijn = LijnenVoorraad.VerwijderEersteLijn();
+            lijn.Sporter = sp;
+            Kabel.NeemLijnInGebruik(lijn);
+            sp.AantalRondenNogTeGaan = _random.Next(1, 3);
 
             Color c = new Color()
             {
-                R = (byte)rdn.Next(0, 256),
-                G = (byte)rdn.Next(0, 256),
-                B = (byte)rdn.Next(0, 256)
+                R = (byte)_random.Next(0, 256),
+                G = (byte)_random.Next(0, 256),
+                B = (byte)_random.Next(0, 256)
             };
 
             sp.KledingKleur = c;
@@ -56,7 +69,7 @@ namespace Waterskibaan
         }
         public override string ToString()
         {
-            return $"{_kabel} {_lijnenVoorraad}";
+            return $"{Kabel} {LijnenVoorraad}";
         }
     }
 }

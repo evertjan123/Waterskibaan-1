@@ -27,7 +27,8 @@ namespace Waterskibaan
             TestOpdracht3();
             TestOpdracht8();
             TestOpdracht10();
-            TestOpdracht11();
+            //TestOpdracht11();
+            TestOpdracht12();
         }
 
         static void TestOpdracht2()
@@ -146,6 +147,15 @@ namespace Waterskibaan
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Opdracht 11:");
+            Console.ResetColor();
+
+            Game game = new Game();
+            game.Initialize();
+        }
+        static void TestOpdracht12()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Opdracht 12:");
             Console.ResetColor();
 
             Game game = new Game();

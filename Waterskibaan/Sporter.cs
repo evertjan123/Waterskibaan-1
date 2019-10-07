@@ -15,13 +15,14 @@ namespace Waterskibaan
         public Skies Skies { get; set; }
         public Color KledingKleur { get; set; }
         public List<IMove> Moves { get; set; }
+        public IMove HuidigeMove { get; set; }
 
         public Sporter(List<IMove> moves)
         {
             BehaaldePunten = 0;
             Moves = moves;
 
-            foreach (var move in Moves)
+            foreach (IMove move in Moves)
             {
                 BehaaldePunten += move.Move();
             }
