@@ -11,6 +11,14 @@ namespace Waterskibaan
         public abstract int MAX_LENGTE_RIJ { get; }
         private Queue<Sporter> _sporters = new Queue<Sporter>();
 
+        public string Type {
+            get
+            {
+                return _wachtrijType;
+            }
+        }
+        protected string _wachtrijType;
+
         public void SporterNeemPlaatsInRij(Sporter sporter)
         {
             if (_sporters.Count < MAX_LENGTE_RIJ)
@@ -38,7 +46,7 @@ namespace Waterskibaan
 
         public override string ToString()
         {
-            return $"{_sporters.Count} sporters in de wachtrij";
+            return $"{_sporters.Count} sporters in de {_wachtrijType.ToLower()}";
         }
     }
 }

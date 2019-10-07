@@ -9,6 +9,10 @@ namespace Waterskibaan
     class WachtrijInstructie : Wachtrij
     {
         public override int MAX_LENGTE_RIJ { get { return 100; } }
-
+        
+        public WachtrijInstructie()
+        {
+            _wachtrijType = "Wachtrij voor instructie";
+        }
     }
 }

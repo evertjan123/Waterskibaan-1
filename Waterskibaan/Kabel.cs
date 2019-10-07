@@ -18,19 +18,22 @@ namespace Waterskibaan
         {
             if (IsStartPositieLeeg() && lijn != null)
             {
-                _lijnen.AddFirst(lijn);
+                _lijnen?.AddFirst(lijn);
             }
         }
         public void VerschuifLijnen()
         {
-            if (_lijnen != null)
+            if (_lijnen?.Last.Value.PositieOpDeKabel >= 9)
             {
-                for (LinkedListNode<Lijn> current = _lijnen.First; current != null; current = current.Next)
-                {
-                    current.Value.PositieOpDeKabel++;
-                }
+                Lijn r = _lijnen.Last.Value;
+                _lijnen.RemoveLast();
+                _lijnen.AddFirst(r);
             }
-            
+
+            for (LinkedListNode<Lijn> current = _lijnen?.First; current != null; current = current.Next)
+            {
+                 current.Value.PositieOpDeKabel++;
+            }
         }
         public Lijn VerwijderLijnVanKabel()
         {

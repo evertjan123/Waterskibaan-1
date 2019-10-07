@@ -8,38 +8,32 @@ namespace Waterskibaan
 {
     class Lijn
     {
-        private int _positieOpDeKabel;
-        public int PositieOpDeKabel {
+        private int _positieOpDeKabel = 0;
+        public int PositieOpDeKabel
+        {
             get
             {
                 return _positieOpDeKabel;
             }
             set
             {
-                if (value > 9 || value < 0)
+                if (value < 0)
                 {
-                    if (value < 0)
+                    if (Sporter != null)
                     {
-                        if (Sporter != null)
-                        {
-                            Sporter.AantalRondenNogTeGaan -= value / 10 - 1;
-                        }
-                        while (value < 0)
-                        {
-                            value += 1000;
-                        }
+                        Sporter.AantalRondenNogTeGaan -= value / 10 - 1;
                     }
-                    else if (Sporter != null)
+                    while (value < 0)
                     {
-                        Sporter.AantalRondenNogTeGaan -= value / 10;
+                        value += 1000;
                     }
-                    
-                    _positieOpDeKabel = value % 10;
                 }
-                else
+                else if (Sporter != null && value > 9)
                 {
-                    _positieOpDeKabel = value;
+                    Sporter.AantalRondenNogTeGaan -= value / 10;
                 }
+
+                _positieOpDeKabel = value % 10;
             }
         }
 

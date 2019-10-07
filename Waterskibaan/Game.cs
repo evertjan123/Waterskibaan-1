@@ -9,7 +9,7 @@ namespace Waterskibaan
 {
     class Game
     {
-        private static Timer _timer;
+        private Timer _timer;
 
         private Waterskibaan _waterskibaan;
 
@@ -40,9 +40,13 @@ namespace Waterskibaan
 
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-            _waterskibaan.SporterStart(new Sporter(MoveCollection.GetWillekeurigeMoves()));
+            _waterskibaan.SporterStart(new Sporter(MoveCollection.GetWillekeurigeMoves())
+            {
+                Zwemvest = new Zwemvest(),
+                Skies = new Skies()
+            });
             _waterskibaan.VerplaatsKabel();
-            Console.WriteLine(_waterskibaan.ToString());
+            Console.WriteLine(_waterskibaan);
         }
     }
 }

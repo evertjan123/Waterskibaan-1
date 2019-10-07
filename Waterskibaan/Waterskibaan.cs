@@ -9,19 +9,22 @@ namespace Waterskibaan
 {
     class Waterskibaan
     {
-        public LijnenVoorraad LijnenVoorraad;
-        public Kabel Kabel;
+        private LijnenVoorraad _lijnenVoorraad;
+        private Kabel _kabel;
         public Waterskibaan()
         {
+            _lijnenVoorraad = new LijnenVoorraad();
+            _kabel = new Kabel();
+
             for (int i = 0; i < 15; i++)
             {
-                LijnenVoorraad.LijnToevoegenAanRij(new Lijn());
+                _lijnenVoorraad?.LijnToevoegenAanRij(new Lijn());
             }
         }
         public void VerplaatsKabel()
         {
-            Kabel.VerschuifLijnen();
-            LijnenVoorraad.LijnToevoegenAanRij(Kabel.VerwijderLijnVanKabel());
+            _kabel.VerschuifLijnen();
+            _lijnenVoorraad.LijnToevoegenAanRij(_kabel.VerwijderLijnVanKabel());
         }
         public void SporterStart(Sporter sp)
         {
@@ -31,13 +34,15 @@ namespace Waterskibaan
             }
 
             Random rdn = new Random();
-            Kabel.NeemLijnInGebruik(LijnenVoorraad.VerwijderEersteLijn());
+            _kabel.NeemLijnInGebruik(_lijnenVoorraad.VerwijderEersteLijn());
             sp.AantalRondenNogTeGaan = rdn.Next(1, 3);
 
-            Color c = new Color();
-            c.R = (byte) rdn.Next(0, 256);
-            c.G = (byte) rdn.Next(0, 256);
-            c.B = (byte) rdn.Next(0, 256);
+            Color c = new Color()
+            {
+                R = (byte)rdn.Next(0, 256),
+                G = (byte)rdn.Next(0, 256),
+                B = (byte)rdn.Next(0, 256)
+            };
 
             sp.KledingKleur = c;
         }
@@ -51,7 +56,7 @@ namespace Waterskibaan
         }
         public override string ToString()
         {
-            return base.ToString();
+            return $"{_kabel} {_lijnenVoorraad}";
         }
     }
 }

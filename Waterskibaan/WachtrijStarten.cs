@@ -10,5 +10,9 @@ namespace Waterskibaan
     {
         public override int MAX_LENGTE_RIJ { get { return 20; } }
 
+        public WachtrijStarten()
+        {
+            _wachtrijType = "Wachtrij om te starten";
+        }
     }
 }
