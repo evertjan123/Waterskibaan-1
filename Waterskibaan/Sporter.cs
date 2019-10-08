@@ -27,5 +27,18 @@ namespace Waterskibaan
                 BehaaldePunten += move.Move();
             }
         }
+
+        public void OnLijnenVerplaatst()
+        {
+            Random random = new Random();
+            if (Moves.Count > 0 && random.Next(0, 4) == 0)
+            {
+                HuidigeMove = Moves[random.Next(0, Moves.Count)];
+            }
+            else
+            {
+               HuidigeMove = null;
+            }
+        }
     }
 }

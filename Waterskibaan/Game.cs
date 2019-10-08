@@ -113,6 +113,8 @@ namespace Waterskibaan
                     sporter.Zwemvest = new Zwemvest();
                     sporter.Skies = new Skies();
 
+                    LijnenVerplaatst += sporter.OnLijnenVerplaatst;
+
                     _waterskibaan.SporterStart(sporter);
                 }
             }

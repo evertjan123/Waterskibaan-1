@@ -24,17 +24,6 @@ namespace Waterskibaan
         }
         public void VerplaatsKabel()
         {
-            for (LinkedListNode<Lijn> current = Kabel.Lijnen?.First; current != null; current = current.Next)
-            {
-                if (current.Value.Sporter.Moves.Count > 0 && _random.Next(0, 4) == 0)
-                {
-                    current.Value.Sporter.HuidigeMove = current.Value.Sporter.Moves[_random.Next(0, current.Value.Sporter.Moves.Count)];
-                }
-                else
-                {
-                    current.Value.Sporter.HuidigeMove = null;
-                }
-            }
             Kabel.VerschuifLijnen();
             LijnenVoorraad.LijnToevoegenAanRij(Kabel.VerwijderLijnVanKabel());
         }
