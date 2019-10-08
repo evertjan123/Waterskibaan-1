@@ -20,15 +20,17 @@ namespace Waterskibaan
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Game _game;
         public MainWindow()
         {
             InitializeComponent();
-            TestOpdracht2();
-            TestOpdracht3();
-            TestOpdracht8();
-            TestOpdracht10();
-            //TestOpdracht11();
-            TestOpdracht12();
+
+            _game = new Game()
+            {
+                BackgroundCanvas = BackgroundCanvas
+            };
+            _game.Initialize();
+            
         }
 
         static void TestOpdracht2()
@@ -160,6 +162,17 @@ namespace Waterskibaan
 
             Game game = new Game();
             game.Initialize();
+        }
+
+        private void BackgroundCanvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                double x = e.GetPosition(this).X;
+                double y = e.GetPosition(this).Y;
+                Console.WriteLine($"new Point({x}, {y}),");
+                _game.LakePoints.Add(new Point(x, y));
+            }
         }
     }
 }

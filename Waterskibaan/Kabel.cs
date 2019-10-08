@@ -8,29 +8,29 @@ namespace Waterskibaan
 {
     class Kabel
     {
-        public LinkedList<Lijn> Lijnen { get; } = new LinkedList<Lijn>();
+        private LinkedList<Lijn> _lijnen = new LinkedList<Lijn>();
 
         public bool IsStartPositieLeeg()
         {
-            return Lijnen == null || Lijnen.Count == 0 || Lijnen.First.Value.PositieOpDeKabel != 0;
+            return _lijnen == null || _lijnen.Count == 0 || _lijnen.First.Value.PositieOpDeKabel != 0;
         }
         public void NeemLijnInGebruik(Lijn lijn)
         {
             if (IsStartPositieLeeg() && lijn != null)
             {
-                Lijnen?.AddFirst(lijn);
+                _lijnen?.AddFirst(lijn);
             }
         }
         public void VerschuifLijnen()
         {
-            if (Lijnen?.Last?.Value?.PositieOpDeKabel >= 9)
+            if (_lijnen?.Last?.Value?.PositieOpDeKabel >= 9)
             {
-                Lijn r = Lijnen.Last.Value;
-                Lijnen.RemoveLast();
-                Lijnen.AddFirst(r);
+                Lijn r = _lijnen.Last.Value;
+                _lijnen.RemoveLast();
+                _lijnen.AddFirst(r);
             }
 
-            for (LinkedListNode<Lijn> current = Lijnen?.First; current != null; current = current.Next)
+            for (LinkedListNode<Lijn> current = _lijnen?.First; current != null; current = current.Next)
             {
                  current.Value.PositieOpDeKabel++;
             }
@@ -39,21 +39,21 @@ namespace Waterskibaan
         {
             Lijn r = null;
 
-            if (Lijnen != null && Lijnen.Count != 0 && Lijnen.Last.Value.PositieOpDeKabel == 9 && (Lijnen.Last.Value.Sporter == null || Lijnen.Last.Value.Sporter.AantalRondenNogTeGaan == 1))
+            if (_lijnen != null && _lijnen.Count != 0 && _lijnen.Last.Value.PositieOpDeKabel == 9 && (_lijnen.Last.Value.Sporter == null || _lijnen.Last.Value.Sporter.AantalRondenNogTeGaan == 1))
             {
-                r = Lijnen.Last.Value;
-                Lijnen.RemoveLast();
+                r = _lijnen.Last.Value;
+                _lijnen.RemoveLast();
             }
 
             return r;
         }
         public override string ToString()
         {
-            if (Lijnen != null && Lijnen.Count > 0)
+            if (_lijnen != null && _lijnen.Count > 0)
             {
                 List<int> integers = new List<int>();
 
-                for (LinkedListNode<Lijn> current = Lijnen.First; current != null; current = current.Next)
+                for (LinkedListNode<Lijn> current = _lijnen.First; current != null; current = current.Next)
                 {
                     integers.Add(current.Value.PositieOpDeKabel);
                 }

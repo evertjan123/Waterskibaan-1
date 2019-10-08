@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace Waterskibaan
 {
@@ -29,6 +33,10 @@ namespace Waterskibaan
         public delegate void LijnenVerplaatstHandler();
         public event LijnenVerplaatstHandler LijnenVerplaatst;
 
+        public Canvas BackgroundCanvas;
+        private Polygon _lake;
+        public PointCollection LakePoints { get; } = new PointCollection();
+
         public void Initialize()
         {
             _waterskibaan = new Waterskibaan();
@@ -42,12 +50,22 @@ namespace Waterskibaan
             NieuweBezoeker += OnNieuweBezoeker;
             InstructieAfgelopen += OnInstructieAfgelopen;
             LijnenVerplaatst += OnLijnenVerplaatst;
+
+            BackgroundCanvas.Background = Brushes.LightGreen;
+            _lake = new Polygon
+            {
+                Fill = Brushes.LightBlue,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Center
+            };
+            _lake.Points = LakePoints;
+            BackgroundCanvas.Children.Add(_lake);
         }
 
         private void SetTimer()
         {
             // Create a timer with a two second interval.
-            _timer = new Timer(getRandomTime());
+            _timer = new Timer(GetRandomTime());
             // Hook up the Elapsed event for the timer. 
             _timer.Elapsed += OnTimedEvent;
             _timer.AutoReset = true;
@@ -55,7 +73,7 @@ namespace Waterskibaan
 
             _counter = 0;
         }
-        private int getRandomTime()
+        private int GetRandomTime()
         {
             return _random.Next(500, 1501);
         }
@@ -63,7 +81,7 @@ namespace Waterskibaan
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             _counter++;
-            _timer.Interval = getRandomTime();
+            _timer.Interval = GetRandomTime();
 
             if (_counter % 3 == 0)
             {
